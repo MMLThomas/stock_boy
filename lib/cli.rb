@@ -3,7 +3,7 @@ require 'pry'
  class CLI
 
     def call
-        puts "Welcome to Stock Boy!"
+        puts "Welcome to Stock Boy! Experts on all stock tickers begining with A"
         @input = nil 
         until @input == 'exit'
             get_sectors
@@ -39,16 +39,16 @@ require 'pry'
     def show_stocks_for(users_choice)
         sector = @sectors[users_choice - 1]
         puts "These are the stocks in the #{sector.name} sector."
-        sector.stocks.each.with_index(1) do |sector, index|
-          puts "#{index}. #{sector.name}"
+        sector.stocks.each.with_index(1) do |stock, index|
+          puts "#{index}. #{stock.name}"
         end
         get_user_stock(sector)
     end
 
     def get_user_stock(sector)
         puts "Select a stock to see more info."
-        input = gets.strip
-        stock = sector[input - 1]
+        input = gets.strip.to_i
+        stock = sector.stocks[input - 1]
         show_stock_details(stock)
     end
 

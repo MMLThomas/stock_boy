@@ -1,5 +1,5 @@
 class Sector
-    attr_accessor :name
+    attr_accessor :name, :stocks
 
     @@all = []
 
@@ -10,6 +10,7 @@ class Sector
         save
     end
 
+
     def name
         @name
     end
@@ -18,12 +19,14 @@ class Sector
         @@all << self
     end
 
+
     def self.all
         @@all
     end
 
-    def add_stock(stock)
-        self.stocks << stock
+    def add_stocks(stock)
+       self.stocks << stock 
+
     end
 
     def self.find_by_name(name)

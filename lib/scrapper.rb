@@ -33,7 +33,7 @@ class Scrapper
     def self.sector_scrapper
         
         self.ticker_scrapper.each do |ticker|
-            sector = nil
+            sector = ""
             html = "http://eoddata.com/stockquote/NYSE/#{ticker}.htm"
             doc = Nokogiri::HTML(open(html))
             if doc.css("div#content div#col1 div#ctl00_cph1_pnl3 table tr")[1]
@@ -44,7 +44,7 @@ class Scrapper
              end
             name = doc.css("table.rc_t td")[1].text
 
-            stock = Stock.new(:ticker => ticker, :sector => sector, :name => name)
+            Stock.new(ticker, name, sector)
 
             #binding.pry
         end
